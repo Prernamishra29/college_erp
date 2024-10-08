@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md p-4 fixed w-full z-10">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="text-xl font-semibold text-gray-800">Faculty Dashboard</div>
+      <div class="flex items-center space-x-4">
+        <button class="text-gray-600 hover:text-gray-900">Profile</button>
+        <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar + Main Content -->
+  <div class="flex pt-16">
+    <!-- Sidebar -->
+    <div class="w-64 bg-gray-800 text-white p-6 h-screen fixed">
+      <ul>
+        <li class="mb-4"><a href="#" class="block text-lg font-semibold hover:bg-gray-700 p-2 rounded">Dashboard</a></li>
+        <li class="mb-4"><a href="#" class="block text-lg font-semibold hover:bg-gray-700 p-2 rounded">Courses</a></li>
+        <li class="mb-4"><a href="#" class="block text-lg font-semibold hover:bg-gray-700 p-2 rounded">Attendance</a></li>
+        <li class="mb-4"><a href="#" class="block text-lg font-semibold hover:bg-gray-700 p-2 rounded">Grading</a></li>
+        <li class="mb-4"><a href="#" class="block text-lg font-semibold hover:bg-gray-700 p-2 rounded">Messages</a></li>
+        <li class="mb-4"><a href="#" class="block text-lg font-semibold hover:bg-gray-700 p-2 rounded">Reports</a></li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 bg-gray-100 p-8 ml-64">
+      <!-- Dashboard Overview -->
+      <h1 class="text-3xl font-semibold mb-6">Welcome, Professor</h1>
+
+      <!-- Cards Section -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <!-- Course Management -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-xl font-semibold mb-4">Courses</h2>
+          <p class="text-gray-600">Manage all your current courses, upload materials, and view student progress.</p>
+          <button id="add-course-btn" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Manage Courses</button>
+        </div>
+
+        <!-- Attendance Management -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-xl font-semibold mb-4">Attendance</h2>
+          <p class="text-gray-600">Mark student attendance and track absentees over the semester.</p>
+          <button id="attendance-btn" class="mt-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Manage Attendance</button>
+        </div>
+
+        <!-- Grading -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-xl font-semibold mb-4">Grading</h2>
+          <p class="text-gray-600">Manage grades and track student performance in quizzes, assignments, and exams.</p>
+          <button id="grading-btn" class="mt-4 bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded">Manage Grades</button>
+        </div>
+      </div>
+
+      <!-- Student Performance Table -->
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold mb-4">Student Performance Overview</h2>
+        <table class="min-w-full bg-white border-collapse">
+          <thead>
+            <tr>
+              <th class="py-2 px-4 bg-gray-200 border">Student Name</th>
+              <th class="py-2 px-4 bg-gray-200 border">Course</th>
+              <th class="py-2 px-4 bg-gray-200 border">Attendance</th>
+              <th class="py-2 px-4 bg-gray-200 border">Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="py-2 px-4 border">John Doe</td>
+              <td class="py-2 px-4 border">Data Structures</td>
+              <td class="py-2 px-4 border">90%</td>
+              <td class="py-2 px-4 border">A</td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals (hidden by default) -->
+  <div id="add-course-modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center hidden">
+    <div class="bg-white p-8 rounded-lg w-1/3">
+      <h2 class="text-2xl font-semibold mb-4">Add Course</h2>
+      <input type="text" class="w-full mb-4 px-4 py-2 border rounded-lg" placeholder="Course Name">
+      <input type="text" class="w-full mb-4 px-4 py-2 border rounded-lg" placeholder="Course Code">
+      <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Save Course</button>
+      <button id="close-course-modal" class="ml-4 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Add similar modals for Attendance and Grading -->
+
+  <!-- Optional Custom JS -->
+  <script src="assets/script.js"></script>
+  <link rel="stylesheet" href="assets/style.css">
+
+</body>
+</html>

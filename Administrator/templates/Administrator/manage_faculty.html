@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Faculty</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/admin_style.css' %}">
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md p-4 fixed w-full z-10">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-xl font-semibold text-gray-800">Manage Faculty</div>
+            <div class="flex items-center space-x-4">
+                <a href="{% url 'administrator:dashboard' %}" class="text-gray-600 hover:text-gray-900">Back to Dashboard</a>
+                <a href="{% url 'logout' %}" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar + Main Content -->
+    <div class="flex pt-16">
+        <!-- Sidebar -->
+        <div class="w-64 bg-gray-800 text-white p-6 h-screen fixed">
+            <ul>
+                <li class="mb-4"><a href="{% url 'administrator:dashboard' %}" class="block text-lg font-semibold hover:bg-gray-700 p-2 rounded">Dashboard</a></li>
+                <li class="mb-4"><a href="{% url 'administrator:manage_faculty' %}" class="block text-lg font-semibold hover:bg-gray-700 p-2 rounded">Manage Faculty</a></li>
+                <li class="mb-4"><a href="{% url 'administrator:manage_students' %}" class="block text-lg font-semibold hover:bg-gray-700 p-2 rounded">Manage Students</a></li>
+                <li class="mb-4"><a href="{% url 'administrator:manage_courses' %}" class="block text-lg font-semibold hover:bg-gray-700 p-2 rounded">Manage Courses</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 bg-gray-100 p-8 ml-64">
+            <h1 class="text-3xl font-semibold mb-6">Manage Faculty</h1>
+
+            <!-- Form to Add New Faculty -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <h2 class="text-2xl font-semibold mb-4">Add New Faculty</h2>
+                <form action="{% url 'administrator:add_faculty' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="name" class="block text-lg font-medium text-gray-700">Full Name</label>
+                        <input type="text" name="name" id="name" class="w-full mt-2 p-2 border rounded-lg">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-lg font-medium text-gray-700">Email</label>
+                        <input type="email" name="email" id="email" class="w-full mt-2 p-2 border rounded-lg">
+                    </div>
+                    <div class="mb-4">
+                        <label for="department" class="block text-lg font-medium text-gray-700">Department</label>
+                        <input type="text" name="department" id="department" class="w-full mt-2 p-2 border rounded-lg">
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Add Faculty</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- List of Faculty Members -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4">Faculty Members</h2>
+                <table class="min-w-full bg-white border-collapse">
+                    <thead>
+                        <tr>
+                            <th class="py-2 px-4 bg-gray-200 border">Name</th>
+                            <th class="py-2 px-4 bg-gray-200 border">Email</th>
+                            <th class="py-2 px-4 bg-gray-200 border">Department</th>
+                            <th class="py-2 px-4 bg-gray-200 border">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for faculty in faculty_list %}
+                        <tr>
+                            <td class="py-2 px-4 border">{{ faculty.name }}</td>
+                            <td class="py-2 px-4 border">{{ faculty.email }}</td>
+                            <td class="py-2 px-4 border">{{ faculty.department }}</td>
+                            <td class="py-2 px-4 border">
+                                <a href="{% url 'administrator:update_faculty' faculty.id %}" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded">Edit</a>
+                                <a href="{% url 'administrator:delete_faculty' faculty.id %}" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/admin_script.js' %}"></script>
+</body>
+</html>
